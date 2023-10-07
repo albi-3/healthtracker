@@ -138,6 +138,12 @@
             var weight = document.getElementById('weight').value;
             var age = document.getElementById('age').value;
 
+            // Check if all inputs are provided
+            if (!height || !weight || !age) {
+                alert('Please enter all the required information.');
+                return;
+            }
+
             // Calculate BMI
             var bmi = (weight / ((height / 100) * (height / 100))).toFixed(2);
 
@@ -192,7 +198,7 @@
             // Add your logic to determine causes based on BMI
             // Example logic: Just for illustration, not accurate
             if (bmi < 18.5) {
-                return 'Possible causes of underweight include inadequate calorie intake, high metabolism, inadequate nutrition, underlying health conditions, or a combination of these factors. Sometimes, mental health issues like stress, anxiety, or depression can also contribute to weight loss or difficulty gaining weight. It\'s essential to address the root cause and work with healthcare professionals, such as a doctor or nutritionist, to develop a healthy plan for weight management.A proper examination by a healthcare expert is essential for determining the precise reason and developing a suitable treatment strategy. <a id="moreDetailsLink" href="https://www.medicalnewstoday.com/articles/321612" target="_blank">More details</a>';
+                return 'Possible causes of underweight include inadequate calorie intake, high metabolism, inadequate nutrition, underlying health conditions, or a combination of these factors. Sometimes, mental health issues like stress, anxiety, or depression can also contribute to weight loss or difficulty gaining weight. It\'s essential to address the root cause and work with healthcare professionals, such as a doctor or nutritionist, to develop a healthy plan for weight management. <a id="moreDetailsLink" href="https://www.medicalnewstoday.com/articles/321612" target="_blank">More details</a>';
             } else if (bmi >= 25 && bmi <= 29.9) {
                 return 'Possible causes of overweight include excess calorie intake, lack of physical activity,genetic factors low-nutrient meals, sedentary lifestyles and environmental effects such as easy availability to unhealthy foods all contribute to this imbalance. <a id="moreDetailsLink" href="https://www.cdc.gov/obesity/basics/causes.html" target="_blank">More details</a>';
             } else if (bmi > 29.9) {
