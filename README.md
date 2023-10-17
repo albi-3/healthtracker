@@ -95,11 +95,6 @@
             font-weight: bold;
         }
 
-        #effects {
-            color: #0070ff; /* Blue color for effects */
-            font-weight: bold;
-        }
-
         #moreDetailsLink {
             color: #4285f4; /* Blue color for the link */
             text-decoration: underline;
@@ -114,7 +109,7 @@
             <label for="height">Height (cm):</label>
             <input type="number" id="height" required>
 
-            <label for "weight">Weight (kg):</label>
+            <label for="weight">Weight (kg):</label>
             <input type="number" id="weight" required>
 
             <label for="age">Age:</label>
@@ -164,10 +159,9 @@
             var plans = getPlans(bmi);
             document.getElementById('plans').innerHTML = 'Plans: ' + plans;
 
-            // Display causes and effects based on BMI
-            var causesAndEffects = getCausesAndEffects(bmi);
-            document.getElementById('causes').innerHTML = causesAndEffects.causes;
-            document.getElementById('effects').innerHTML = 'Effects: ' + causesAndEffects.effects;
+            // Display causes based on BMI
+            var causes = getCauses(bmi);
+            document.getElementById('causes').innerHTML = causes ? 'Causes: ' + causes : '';
 
             // Update BMI meter
             updateBMIMeter(bmi);
@@ -201,22 +195,18 @@
             }
         }
 
-        function getCausesAndEffects(bmi) {
-            var causes = '';
-            var effects = '';
-
+        function getCauses(bmi) {
+            // Add your logic to determine causes based on BMI
+            // Example logic: Just for illustration, not accurate
             if (bmi < 18.5) {
-                causes = 'Possible causes of underweight include inadequate calorie intake, high metabolism, inadequate nutrition, underlying health conditions, or a combination of these factors. Sometimes, mental health issues like stress, anxiety, or depression can also contribute to weight loss or difficulty gaining weight.';
-                effects = 'Effects of being underweight may include reduced energy levels, weakened immune system, and nutritional deficiencies.';
+                return 'Possible causes of underweight include inadequate calorie intake, high metabolism, inadequate nutrition, underlying health conditions, or a combination of these factors. Sometimes, mental health issues like stress, anxiety, or depression can also contribute to weight loss or difficulty gaining weight. It\'s essential to address the root cause and work with healthcare professionals, such as a doctor or nutritionist, to develop a healthy plan for weight management. <a id="moreDetailsLink" href="https://www.medicalnewstoday.com/articles/321612" target="_blank">More details</a>';
             } else if (bmi >= 25 && bmi <= 29.9) {
-                causes = 'Possible causes of overweight include excess calorie intake, lack of physical activity, genetic factors, low-nutrient meals, sedentary lifestyles, and environmental effects such as easy availability of unhealthy foods.';
-                effects = 'Effects of being overweight may include increased risk of chronic diseases like diabetes, heart disease, and joint problems.';
+                return 'Possible causes of overweight include excess calorie intake, lack of physical activity,genetic factors low-nutrient meals, sedentary lifestyles and environmental effects such as easy availability to unhealthy foods all contribute to this imbalance. <a id="moreDetailsLink" href="https://www.cdc.gov/obesity/basics/causes.html" target="_blank">More details</a>';
             } else if (bmi > 29.9) {
-                causes = 'Possible causes of obesity include unhealthy eating habits, lack of physical activity, or genetic factors. Emotional eating and other psychological issues might also play a role.';
-                effects = 'Effects of obesity may include increased risk of chronic diseases, reduced mobility, and negative impacts on mental health.';
+                return 'Possible causes of obesity include unhealthy eating habits, lack of physical activity, or genetic factors.Emotional eating and other psychological issues might also play a role. <a id="moreDetailsLink" href="https://www.mayoclinic.org/diseases-conditions/obesity/symptoms-causes/syc-20375742" target="_blank">More details</a>';
+            } else {
+                return ''; // Return empty string for normal weight
             }
-
-            return { causes, effects };
         }
 
         function updateBMIMeter(bmi) {
