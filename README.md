@@ -123,7 +123,8 @@
         <form id="healthForm">
             <label for="height">Height (cm):</label>
             <input type="number" id="height" required>
-            <label for "weight"> Weight (kg):</label>
+
+            <label for "weight">Weight (kg):</label>
             <input type="number" id="weight" required>
 
             <label for="age">Age:</label>
