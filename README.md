@@ -7,7 +7,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health Tracker</title>
     <style>
-        /* (Your CSS styles here) */
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+        }
+
+        #container {
+            background-color: #fff; /* White container background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        #bmiMeter {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        #meterContainer {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        #meterRange {
+            position: relative;
+            height: 20px;
+            background-color: #ccc; /* Gray background for the meter range */
+            border-radius: 10px;
+        }
+
+        #meterArrow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background-color: #4caf50; /* Green arrow color */
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4caf50; /* Green button color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        h1, h2 {
+            color: #333; /* Dark text color */
+        }
+
+        p {
+            margin-top: 0;
+            color: #666; /* Medium gray text color */
+        }
+
+        #causes {
+            color: #FF0000; /* Red color for causes */
+            font-weight: bold;
+        }
+
+        #effects {
+            color: #0070ff; /* Blue color for effects */
+            font-weight: bold;
+        }
+
+        #moreDetailsLink {
+            color: #4285f4; /* Blue color for the link */
+            text-decoration: underline;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -16,7 +115,6 @@
         <form id="healthForm">
             <label for="height">Height (cm):</label>
             <input type="number" id="height" required min="50" max="250">
-
             <label for="weight">Weight (kg):</label>
             <input type="number" id="weight" required min="10" max="500">
 
