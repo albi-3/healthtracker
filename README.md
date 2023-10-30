@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -94,6 +95,11 @@
             font-weight: bold;
         }
 
+        #effects {
+            color: #0070ff; /* Blue color for effects */
+            font-weight: bold;
+        }
+
         #moreDetailsLink {
             color: #4285f4; /* Blue color for the link */
             text-decoration: underline;
@@ -106,13 +112,13 @@
         <h1>Health Tracker</h1>
         <form id="healthForm">
             <label for="height">Height (cm):</label>
-            <input type="number" id="height" required>
+            <input type="number" id="height" required min="50" max="250">
 
-            <label for="weight">Weight (kg):</label>
-            <input type="number" id="weight" required>
+            <label for "weight">Weight (kg):</label>
+            <input type="number" id="weight" required min="10" max="500">
 
             <label for="age">Age:</label>
-            <input type="number" id="age" required>
+            <input type="number" id="age" required min="1" max="120">
 
             <button type="button" onclick="calculateBMI()">Calculate BMI</button>
         </form>
@@ -138,9 +144,9 @@
             var weight = document.getElementById('weight').value;
             var age = document.getElementById('age').value;
 
-            // Check if all inputs are provided
-            if (!height || !weight || !age) {
-                alert('Please enter all the required information.');
+            // Check if inputs are logical
+            if (height < 50 || height > 250 || weight < 10 || weight > 500 || age < 1 || age > 120) {
+                alert('Please enter valid height, weight, and age.');
                 return;
             }
 
@@ -150,69 +156,68 @@
             // Display BMI result
             document.getElementById('result').innerHTML = 'Your BMI: ' + bmi;
 
-            // Display effects based on BMI
-            var effects = getEffects(bmi);
-            document.getElementById('effects').innerHTML = 'Effects: ' + effects;
+            // Display "Normal BMI" if BMI is within the normal range
+            if (bmi >= 18.5 && bmi <= 24.9) {
+                document.getElementById('effects').innerHTML = 'Normal BMI';
+                document.getElementById('plans').innerHTML = 'Maintain a balanced diet and engage in regular physical activity to stay healthy.';
+                // Clear any existing causes
+                document.getElementById('causes').innerHTML = '';
+            } else {
+                // Display effects, plans, and causes based on BMI
+                var effects = getEffects(bmi);
+                document.getElementById('effects').innerHTML = effects ? 'Effects: ' + effects : '';
 
-            // Display diet and workout plans based on BMI category
-            var plans = getPlans(bmi);
-            document.getElementById('plans').innerHTML = 'Plans: ' + plans;
+                var plans = getPlans(bmi);
+                document.getElementById('plans').innerHTML = 'Plans: ' + plans;
 
-            // Display causes based on BMI
-            var causes = getCauses(bmi);
-            document.getElementById('causes').innerHTML = causes ? 'Causes: ' + causes : '';
+                var causes = getCauses(bmi);
+                document.getElementById('causes').innerHTML = causes ? 'Causes: ' + causes : '';
+            }
 
             // Update BMI meter
             updateBMIMeter(bmi);
         }
 
         function getEffects(bmi) {
-            // Add your logic to determine effects based on BMI
-            // Example logic: Just for illustration, not accurate
+            var effects = '';
             if (bmi < 18.5) {
-                return 'Underweight. Your normal BMI is 18.5.';
-            } else if (bmi >= 18.5 && bmi <= 24.9) {
-                return 'Normal weight';
+                effects = 'You are underweight, which may lead to reduced energy levels and a weakened immune system. It is essential to consult with a healthcare professional.';
             } else if (bmi >= 25 && bmi <= 29.9) {
-                return 'Overweight. Your normal BMI is 24.9.';
-            } else {
-                return 'Obese. Your normal BMI is 24.9.';
+                effects = 'You are overweight, which may increase the risk of chronic diseases like heart disease and diabetes. Consider a balanced diet and regular exercise.';
+            } else if (bmi > 29.9) {
+                effects = 'You are obese, which may lead to various health problems. Consult with a healthcare professional for a personalized plan.';
             }
+            return effects;
         }
 
         function getPlans(bmi) {
-            // Add your logic to determine plans based on BMI
-            // Example logic: Just for illustration, not accurate
+            var plans = '';
             if (bmi < 18.5) {
-                return 'Follow a diet rich in protein and healthy fats. Consider weight training.';
+                plans = 'Consider a diet rich in proteins and healthy fats. Consult with a nutritionist for a personalized plan.';
             } else if (bmi >= 18.5 && bmi <= 24.9) {
-                return 'Maintain a balanced diet and regular exercise routine.';
+                plans = 'Maintain a balanced diet and engage in regular physical activity to stay healthy.';
             } else if (bmi >= 25 && bmi <= 29.9) {
-                return 'Focus on a calorie-controlled diet and increase physical activity.';
+                plans = 'Focus on a calorie-controlled diet and increase your physical activity. Consult with a healthcare professional for guidance.';
             } else {
-                return 'Consult with a healthcare professional for personalized advice.';
+                plans = 'Consult with a healthcare professional for a comprehensive weight management plan tailored to your needs.';
             }
+            return plans;
         }
 
         function getCauses(bmi) {
-            // Add your logic to determine causes based on BMI
-            // Example logic: Just for illustration, not accurate
+            var causes = '';
             if (bmi < 18.5) {
-                return 'Possible causes of underweight include inadequate calorie intake, high metabolism, inadequate nutrition, underlying health conditions, or a combination of these factors. Sometimes, mental health issues like stress, anxiety, or depression can also contribute to weight loss or difficulty gaining weight. It\'s essential to address the root cause and work with healthcare professionals, such as a doctor or nutritionist, to develop a healthy plan for weight management. <a id="moreDetailsLink" href="https://www.medicalnewstoday.com/articles/321612" target="_blank">More details</a>';
+                causes = 'Possible causes of underweight include inadequate calorie intake, high metabolism, inadequate nutrition, underlying health conditions, or a combination of these factors. Sometimes, mental health issues like stress, anxiety, or depression can also contribute to weight loss or difficulty gaining weight.';
             } else if (bmi >= 25 && bmi <= 29.9) {
-                return 'Possible causes of overweight include excess calorie intake, lack of physical activity,genetic factors low-nutrient meals, sedentary lifestyles and environmental effects such as easy availability to unhealthy foods all contribute to this imbalance. <a id="moreDetailsLink" href="https://www.cdc.gov/obesity/basics/causes.html" target="_blank">More details</a>';
+                causes = 'Possible causes of overweight include excess calorie intake, lack of physical activity, genetic factors, low-nutrient meals, sedentary lifestyles, and environmental effects such as easy availability of unhealthy foods.';
             } else if (bmi > 29.9) {
-                return 'Possible causes of obesity include unhealthy eating habits, lack of physical activity, or genetic factors.Emotional eating and other psychological issues might also play a role. <a id="moreDetailsLink" href="https://www.mayoclinic.org/diseases-conditions/obesity/symptoms-causes/syc-20375742" target="_blank">More details</a>';
-            } else {
-                return ''; // Return empty string for normal weight
+                causes = 'Possible causes of obesity include unhealthy eating habits, lack of physical activity, or genetic factors. Emotional eating and other psychological issues might also play a role.';
             }
+            return causes;
         }
 
         function updateBMIMeter(bmi) {
-            // Calculate the position of the arrow based on the BMI value
             var arrowPosition = (bmi - 18.5) / (29.9 - 18.5) * 100;
-
-            // Update the arrow position
             document.getElementById('meterArrow').style.left = arrowPosition + '%';
         }
     </script>
