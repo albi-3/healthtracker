@@ -114,7 +114,7 @@
             <label for="height">Height (cm):</label>
             <input type="number" id="height" required min="50" max="250">
 
-            <label for "weight">Weight (kg):</label>
+            <label for= "weight">Weight (kg):</label>
             <input type="number" id="weight" required min="10" max="500">
 
             <label for="age">Age:</label>
