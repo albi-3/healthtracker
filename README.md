@@ -113,9 +113,9 @@
             <label for="height">Height (cm):</label>
             <input type="number" id="height" required min="50" max="250" onkeydown="if(event.key==='Enter') calculateBMI()">
 
-           <label for="weight">Weight (kg):</label>
+            <label for="weight">Weight (Kg):</label>
             <input type="number" id="weight" required min="10" max="500" onkeydown="if(event.key==='Enter') calculateBMI()">
-
+            
             <label for="age">Age:</label>
             <input type="number" id="age" required min="1" max="120" onkeydown="if(event.key==='Enter') calculateBMI()">
 
