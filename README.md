@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -89,6 +90,11 @@
             color: #666; /* Medium gray text color */
         }
 
+        .link {
+            display: block;
+            margin-top: 10px;
+        }
+
         #causes {
             color: #FF0000; /* Red color for causes */
             font-weight: bold;
@@ -110,24 +116,25 @@
     <div id="container">
         <h1>Health Tracker</h1>
         <form id="healthForm">
-    <label for="height">Height (cm):</label>
-    <input type="number" id="height" required min="50" max="250" onkeydown="if(event.key==='Enter') calculateBMI()">
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" required min="50" max="250" onkeydown="if(event.key==='Enter') calculateBMI()">
 
-    <label for="weight">Weight (kg):</label>
-    <input type="number" id="weight" required min="10" max="500" onkeydown="if(event.key==='Enter') calculateBMI()">
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" required min="10" max="500" onkeydown="if(event.key==='Enter') calculateBMI()">
 
-    <label for="age">Age:</label>
-    <input type="number" id="age" required min="1" max="120" onkeydown="if(event.key==='Enter') calculateBMI()">
+            <label for="age">Age:</label>
+            <input type="number" id="age" required min="1" max="120" onkeydown="if(event.key==='Enter') calculateBMI()">
 
-    <button type="button" onclick="calculateBMI()">Calculate BMI</button>
-</form>
+            <button type="button" onclick="calculateBMI()">Calculate BMI</button>
+        </form>
 
         <h2>Results</h2>
         <p id="result"></p>
         <p id="effects"></p>
         <p id="plans"></p>
         <p id="causes"></p>
-        <p id="dietPlanLink"></p>
+        <p id="dietPlanLink" class="link"></p>
+        <p id="workoutPlanLink" class="link"></p>
 
         <div id="bmiMeter">
             <div id="meterContainer">
@@ -164,6 +171,7 @@
                 document.getElementById('causes').innerHTML = '';
                 // Set the link for normal BMI
                 document.getElementById('dietPlanLink').innerHTML = '<a href="https://www.verywellfit.com/an-example-of-a-healthy-balanced-meal-plan-2506647" target="_blank">Healthy Balanced Meal Plan</a>';
+                document.getElementById('workoutPlanLink').innerHTML = '<a href="https://www.healthline.com/health/exercise-to-gain-weight" target="_blank">Balanced workout</a>';
             } else {
                 var effects = getEffects(bmi);
                 document.getElementById('effects').innerHTML = effects ? 'Effects: ' + effects : '';
@@ -177,16 +185,20 @@
                 // Display the hyperlink for diet plan based on BMI category
                 if (bmi < 18.5) {
                     plans += ' <a href="https://www.lybrate.com/topic/diet-for-underweight" target="_blank">Diet Plan</a>';
+                    plans += ' <a href="https://www.healthline.com/health/exercise-to-gain-weight" target="_blank">Workout plan</a>';
                 } else if (bmi >= 25 && bmi <= 29.9) {
                     plans += ' <a href="https://www.medicalnewstoday.com/articles/weight-loss-meal-plan" target="_blank">Diet Plan</a>';
+                    plans += ' <a href="https://www.verywellfit.com/best-workouts-if-youre-overweight-3495993" target="_blank">Workout plan</a>';
                 } else if (bmi > 29.9) {
                     plans += ' <a href="https://www.sugarfit.com/blog/obesity-diet-plan/" target="_blank">Diet Plan</a>';
+                    plans += ' <a href="https://www.healthline.com/health/fitness-exercise/exercise-for-obese-people" target="_blank">Workout plan</a>';
                 }
 
                 document.getElementById('plans').innerHTML = 'Plans: ' + plans;
 
                 // Clear the diet plan link if it's not normal BMI
                 document.getElementById('dietPlanLink').innerHTML = '';
+                document.getElementById('workoutPlanLink').innerHTML = '';
             }
 
             // Update BMI meter
