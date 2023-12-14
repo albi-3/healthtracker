@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SANAL'SHealth Tracker</title>
+    <title>Health Tracker</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -114,7 +114,7 @@
 </head>
 <body>
     <div id="container">
-        <h1>Health Tracker</h1>
+        <h1> SANAL'S Health Tracker</h1>
         <form id="healthForm">
             <label for="height">Height (cm):</label>
             <input type="number" id="height" required min="50" max="250" onkeydown="if(event.key==='Enter') calculateBMI()">
